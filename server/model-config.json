@@ -10,10 +10,23 @@
       "loopback/common/mixins",
       "loopback/server/mixins",
       "../common/mixins",
-      "./mixins"
+      "./mixins",
+      "../node_modules/loopback-setup-remote-methods-mixin"
     ]
   },
-  "Form": {
+  "market": {
+    "dataSource": "db",
+    "public": true
+  },
+  "user": {
+    "dataSource": "db",
+    "public": true
+  },
+  "ticker": {
+    "dataSource": "db",
+    "public": false
+  },
+  "event": {
     "dataSource": "db",
     "public": true
   }

@@ -10,7 +10,7 @@ RUN yarn
 
 ENV NODE_ENV production
 
-ENV PORT 8080
+ENV PORT 3000
 
 RUN apt update && apt install unzip && apt-get clean
 

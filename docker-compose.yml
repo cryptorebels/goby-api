@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:latest
+
+  app:
+    build: ./
+    links:
+    - db

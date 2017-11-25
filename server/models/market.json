@@ -1,0 +1,38 @@
+{
+  "name": "market",
+  "plural": "markets",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "short": {
+      "type": "string",
+      "required": true
+    },
+    "ticker": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {},
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": ["find"]
+    }
+  }
+}

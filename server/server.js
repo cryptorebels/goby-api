@@ -1,16 +1,19 @@
-var loopback = require('loopback')
-var boot = require('loopback-boot')
+const loopback = require('loopback')
+const boot = require('loopback-boot')
 
-var app = module.exports = loopback()
+require('./crons')
+
+const app = module.exports = loopback()
+
 
 app.start = function() {
   // start the web server
   return app.listen(function() {
     app.emit('started')
-    var baseUrl = app.get('url').replace(/\/$/, '')
+    const baseUrl = app.get('url').replace(/\/$/, '')
     console.info('Web server listening at: %s', baseUrl)
     if (app.get('loopback-component-explorer')) {
-      var explorerPath = app.get('loopback-component-explorer').mountPath
+      const explorerPath = app.get('loopback-component-explorer').mountPath
       console.info('Browse your REST API at %s%s', baseUrl, explorerPath)
     }
   })

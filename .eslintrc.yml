@@ -1,1 +1,1 @@
-extends: alvarium-nodejs
+extends: alvarium/node-es6
