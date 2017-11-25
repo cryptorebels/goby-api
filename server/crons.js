@@ -1,16 +1,21 @@
 import { CronJob } from 'cron'
-// import api from './apis'
+import { updateMarkets } from './models/market'
+
+let app = null
+
+const init = (mainApp) => {
+  app = mainApp
+}
 
 const marketsUpdate = new CronJob({
-  cronTime: '*/5 * * * * *',
+  cronTime: '* * */12 * * *',
   onTick: () => {
-    // api.markets().then((data) => {
-    //   console.log('received data!')
-    // })
+    updateMarkets(app.models.market)
   },
   start: true,
 })
 
 export default {
   marketsUpdate,
+  init,
 }

@@ -1,7 +1,6 @@
-const loopback = require('loopback')
-const boot = require('loopback-boot')
-
-require('./crons')
+import loopback from 'loopback'
+import boot from 'loopback-boot'
+import crons from './crons'
 
 const app = module.exports = loopback()
 
@@ -25,6 +24,8 @@ boot(app, __dirname, function(err) {
   if (err) throw err
 
   // start the server if `$ node server.js`
-  if (require.main === module)
+  if (require.main === module) {
     app.start()
+    crons.init(app)
+  }
 })

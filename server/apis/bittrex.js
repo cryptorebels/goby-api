@@ -1,5 +1,18 @@
 import BaseApi from './base'
 
+export const filter = (filters, data) => {
+  if (!Object.keys(filters).length) {
+    return data
+  }
+
+  Object.keys(filters).forEach((key) => {
+    const value = filters[key]
+    data = data.filter((market) => value === market[key])
+  })
+
+  return data
+}
+
 class Bittrex extends BaseApi {
   /**
    * Bittrex base API URL
@@ -11,17 +24,20 @@ class Bittrex extends BaseApi {
    *
    * @return {array} Of objects containing the markets information.
    */
-  markets() {
+  markets(filters = {}) {
     return this.get('public/getmarkets')
       .then((data) => data.result)
-      .then((data) => data.filter((market) => market.IsActive))
       .then((data) =>
         data.map((market) => ({
-          key: market.MarketName.replace('-', ''),
+          active: market.IsActive,
+          name: market.MarketCurrencyLong,
+          key: market.MarketName,
           base: market.BaseCurrency,
-          market: market.MarketCurrency,
+          ticker: market.MarketCurrency,
+          logo: market.LogoUrl,
         }))
       )
+      .then((data) => filter(filters, data))
   }
 
   /**
@@ -32,7 +48,6 @@ class Bittrex extends BaseApi {
   currencies() {
     return this.get('public/getcurrencies')
       .then((data) => data.result)
-      .then((data) => data.filter((currency) => currency.IsActive))
       .then((data) => data.map((currency) => currency.Currency))
       // Bittrex already returns currencies sorted, but just in case..
       .then((data) => data.sort())
