@@ -1,0 +1,20 @@
+stages:
+- test
+- analysis
+- build
+
+test:
+  stage: test
+  image: node:latest
+  services:
+  - mongo
+  cache:
+    paths:
+    - node_modules
+  variables:
+    DB_HOST: mongo
+  coverage: '/All files[^|]*\|[^|]*\s+[\d\.]+[^|]*\|\s*[\d\.][^|]*\|\s*[\d\.][^|]*\|\s*([\d\.])/'
+  before_script:
+  - yarn
+  script:
+  - yarn run ci-test
