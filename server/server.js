@@ -29,3 +29,5 @@ boot(app, __dirname, function(err) {
     crons.init(app)
   }
 })
+
+export default app

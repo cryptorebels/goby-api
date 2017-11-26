@@ -1,21 +1,23 @@
 import { CronJob } from 'cron'
-import { updateMarkets } from './models/market'
+import api from './apis'
 
-let app = null
-
-const init = (mainApp) => {
-  app = mainApp
+const updateMarkets = (app) => {
+  api.markets({ active: true, base: 'BTC' }).then((markets) => {
+    app.models.Market.updateMarkets(markets)
+  })
 }
 
-const marketsUpdate = new CronJob({
-  cronTime: '* * */12 * * *',
-  onTick: () => {
-    updateMarkets(app.models.market)
-  },
-  start: true,
-})
+const init = (app) => {
+  updateMarkets(app)
+  new CronJob({
+    cronTime: '* * */2 * * *',
+    onTick: () => {
+      updateMarkets(app)
+    },
+    start: true,
+  })
+}
 
 export default {
-  marketsUpdate,
   init,
 }
