@@ -1,5 +1,6 @@
 import { CronJob } from 'cron'
 import api from './apis'
+// import bittrex from 'node-bittrex-api'
 
 const updateMarkets = (app) => {
   api.markets({ active: true, base: 'BTC' }).then((markets) => {
