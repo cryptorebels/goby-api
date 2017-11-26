@@ -3,8 +3,17 @@ version: '3'
 services:
   db:
     image: mongo:latest
+
+  adminmongo:
+    image: mrvautin/adminmongo:latest
+    links:
+    - db
+    environment:
+      CONN_NAME: db
+      DB_HOST: db
     ports:
-    - 27017:27017
+    - ${ADMIN_PORT-8181}:1234
+
 
   app:
     build:
@@ -15,4 +24,4 @@ services:
     volumes:
     - ./:/app
     ports:
-    - 8080:3000
+    - ${PORT-8080}:3000
