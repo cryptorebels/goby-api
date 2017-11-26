@@ -1,7 +1,7 @@
-Forms microservice API
-======================
+Goby API
+========
 
-This is the forms microservice API, created using loopback.
+Just another api built with loopback..
 
 Development
 -----------
@@ -25,11 +25,3 @@ yarn test
 # or, if you wanna exclude coverage
 yarn test -- --no-coverage
 ~~~
-
-Resources
----------
-
-The API is built taking in mind that the forms will be built using
-[mozilla's react-jsonschema-form][rjf]
-
-[rjf]: https://github.com/mozilla-services/react-jsonschema-form
