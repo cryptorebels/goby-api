@@ -12,7 +12,7 @@
     "start": "node .",
     "dev": "NODE_ENV=development DB_HOST=localhost npm run nodemon",
     "ci-test": "NODE_ENV=test npm test -- --no-color",
-    "test": "jest",
+    "test": "node scripts/test.js",
     "posttest": "npm run lint && nsp check",
     "postversion": "git push && git push --tags --no-verify"
   },
@@ -63,7 +63,8 @@
       "<rootDir>/server/**/?(!(utils).)(spec|test).{js,jsx,mjs}"
     ],
     "testPathIgnorePatterns": [
-      "/coverage/"
+      "/coverage/",
+      "/scripts/"
     ]
   }
 }
