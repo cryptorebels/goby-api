@@ -1,5 +1,4 @@
 import bittrex from 'node-bittrex-api'
-import debug from 'debug'
 
 module.exports = class BittrexExchange {
   constructor (bitrexOpts) {
@@ -17,8 +16,12 @@ module.exports = class BittrexExchange {
     })
   }
 
-  getOrders (cb) {
-    bittrex.getorderhistory({}, function (data, err) {
+  getOrders (market, cb) {
+    const options = {}
+    if (market) {
+      options.market = market
+    }
+    bittrex.getorderhistory(options, function (data, err) {
       if (err) {
         cb(err)
       }
