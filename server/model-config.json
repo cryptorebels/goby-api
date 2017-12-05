@@ -37,5 +37,9 @@
   "order": {
     "dataSource": null,
     "public": true
+  },
+  "summary": {
+    "dataSource": null,
+    "public": true
   }
 }
