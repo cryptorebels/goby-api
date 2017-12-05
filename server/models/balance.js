@@ -1,5 +1,4 @@
 import bittrex from 'node-bittrex-api'
-import fixtures from '../fixtures/balances.json'
 
 module.exports = function (Balance) {
   Balance.getBalances = (cb) => {
@@ -11,7 +10,7 @@ module.exports = function (Balance) {
         cb(err)
       }
 
-      cb(null, fixtures)
+      cb(null, data)
     })
   }
 
