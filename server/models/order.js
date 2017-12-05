@@ -1,11 +1,11 @@
 import BittrexExchange from '../exchanges/bittrex'
 
-module.exports = function (Balance) {
-  Balance.getBalances = (cb) => {
-    const bitrexOpts = Balance.app.get('bittrex')
+module.exports = function (Order) {
+  Order.getOrders = (cb) => {
+    const bitrexOpts = Order.app.get('bittrex')
     const exchange = new BittrexExchange(bitrexOpts)
 
-    exchange.getBalances((err, data) => {
+    exchange.getOrders((err, data) => {
       if (err) {
         cb(err)
       }
@@ -14,7 +14,7 @@ module.exports = function (Balance) {
     })
   }
 
-  Balance.remoteMethod('getBalances', {
+  Order.remoteMethod('getOrders', {
     http: { verb: 'get', path: '/' },
     returns: {type: 'array', root: true}
   })

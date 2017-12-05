@@ -10,7 +10,7 @@
     "babel-node": "babel-node server/server.js",
     "nodemon": "nodemon --exec npm run babel-node",
     "start": "node .",
-    "dev": "NODE_ENV=development DB_HOST=localhost npm run nodemon",
+    "dev": "DEBUG=gaby-api* NODE_ENV=development DB_HOST=localhost npm run nodemon",
     "ci-test": "NODE_ENV=test npm test -- --no-color",
     "test": "node scripts/test.js",
     "posttest": "npm run lint && nsp check",
