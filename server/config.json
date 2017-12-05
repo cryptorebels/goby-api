@@ -17,5 +17,9 @@
       "limit": "100kb"
     },
     "cors": false
+  },
+  "bittrex": {
+    "apikey": "",
+    "apisecret": ""
   }
 }
