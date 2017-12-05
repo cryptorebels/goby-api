@@ -29,5 +29,9 @@
   "event": {
     "dataSource": "db",
     "public": true
+  },
+  "balance": {
+    "dataSource": null,
+    "public": true
   }
 }

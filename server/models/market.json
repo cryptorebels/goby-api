@@ -6,6 +6,13 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": [
+        "find"
+      ]
+    }
+  },
   "properties": {
     "name": {
       "type": "string",
@@ -33,10 +40,5 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {},
-  "mixins": {
-    "SetupRemoteMethods": {
-      "disableAllExcept": ["find"]
-    }
-  }
+  "methods": {}
 }
