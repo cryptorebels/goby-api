@@ -3,7 +3,7 @@ import api from './apis'
 // import bittrex from 'node-bittrex-api'
 
 const updateMarkets = (app) => {
-  api.markets({ active: true, base: 'BTC' }).then((markets) => {
+  api.markets({ base: 'BTC' }).then((markets) => {
     app.models.Market.updateMarkets(markets)
   })
 }
