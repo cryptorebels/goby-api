@@ -3,6 +3,9 @@ import debug from 'debug'
 
 module.exports = class BittrexExchange {
   constructor (bitrexOpts) {
+    this.marketBlacklist = [
+      'BTC'
+    ]
     this.bittrexOps = bitrexOpts
     bittrex.options(bitrexOpts)
   }
@@ -25,7 +28,7 @@ module.exports = class BittrexExchange {
 
     bittrex.getorderhistory(options, function (data, err) {
       if (err) {
-        debug('goby-api:bittrex')('An error getting orderhistory happened')
+        debug('goby-api:bittrex')('An error getting orderhistory happened for market: ', market)
         return cb(err)
       }
 
@@ -63,6 +66,10 @@ module.exports = class BittrexExchange {
       const orderHistories = []
 
       balances.forEach((balance) => {
+        if (this.marketBlacklist.indexOf(balance.Currency) !== -1) {
+          return
+        }
+
         const balanceSummary = new Promise((resolve, reject) => {
           const market = 'BTC-' + balance.Currency
           this.getOrders(market, (err, data) => {
