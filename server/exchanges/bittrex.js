@@ -16,6 +16,10 @@ module.exports = class BittrexExchange {
         cb(err)
       }
 
+      if (!data) {
+        cb(new Error('No response from Bittrex API'))
+      }
+
       cb(null, data.result)
     })
   }
