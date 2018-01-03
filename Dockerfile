@@ -14,4 +14,4 @@ ENV PORT 3000
 
 RUN apt update && apt install unzip && apt-get clean
 
-ENTRYPOINT ["node", "."]
+ENTRYPOINT ["npm", "start"]

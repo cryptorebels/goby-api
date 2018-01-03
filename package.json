@@ -9,7 +9,7 @@
     "lint": "eslint server",
     "babel-node": "babel-node server/server.js",
     "nodemon": "nodemon --exec npm run babel-node",
-    "start": "node .",
+    "start": "npm run babel-node",
     "dev": "DEBUG=goby-api* NODE_ENV=development DB_HOST=localhost npm run nodemon",
     "ci-test": "NODE_ENV=test npm test -- --no-color",
     "test": "node scripts/test.js",
